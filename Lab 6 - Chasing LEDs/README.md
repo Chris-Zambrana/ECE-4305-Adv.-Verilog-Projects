@@ -3,7 +3,7 @@
 ## Overview
 
 Please refer to the following PDF file for detailed instructions and description of the lab:
-- [Lab Instructions](Lab%206%20-%20Chasing%20LEDs%20.pdf)
+- [Lab Instructions](Lab%206%20-%20Chasing%20LEDs.pdf)
 
 ## Speed vs Levels Graph + Equation for Y
 

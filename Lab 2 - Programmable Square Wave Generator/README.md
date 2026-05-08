@@ -10,6 +10,3 @@ For detailed instructions and general description of this project, please refer 
 ## Oscilloscope
 ![Oscilloscope](images/Oscilloscope%20Picture.jpg)
 *m = 9 and n = 7*
-
-## Demo Video
-<!-- Add your YouTube video link here -->

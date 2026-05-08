@@ -17,6 +17,3 @@ Please refer to the following PDF file for detailed instructions and description
 | RAMB18                 | 1    | 0     | 0          | 270       | 0.37  |
 |   RAMB18E1 only        | 1    | N/A   | N/A        | N/A       | N/A   |
 
-## Video Demo
-
-Add your video demo here.

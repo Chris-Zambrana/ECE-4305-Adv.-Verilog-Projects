@@ -21,8 +21,6 @@ Essentially, it's an FPGA-based VGA controller that lets you display a centered,
 Please refer to the following PDF file for detailed instructions and description of the lab:
 - [Lab Instructions](Lab_12_Square_Test_Pattern_Generator/images/Lab%2012%20-%20Square%20Test-Pattern%20Generator.pdf)
 
-## Video Demo
-
 
 
 

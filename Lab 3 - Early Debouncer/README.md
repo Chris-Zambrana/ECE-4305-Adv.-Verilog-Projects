@@ -17,7 +17,3 @@ This project implements an early detection debouncing circuit based on section 5
 
 At cursor X1 (the measurement at the negative edge of the clock), the db signal instantly goes low at the same time the button (sw) changes. However, I captured the moment when the button (sw) changes before the 20-30ms delay is finished within the output (db). The Cursor measurement shows that the delay for the output is 25ms, staying low and then once that delay is done, then it starts reading the input from the sw and it instantly goes high. 
 
-## Video Demo
-
-<!-- Add your video demo link here -->
-<!-- Example: [Video Demo](your-video-link) -->

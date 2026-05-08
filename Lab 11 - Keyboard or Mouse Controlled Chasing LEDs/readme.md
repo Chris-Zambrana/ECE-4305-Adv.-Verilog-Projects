@@ -7,7 +7,3 @@ This project extends the basic Chasing LEDs experiment (Lab 6) by adding PS/2 ke
 Please refer to the following PDF file for detailed instructions and description of the lab:
 - [Lab Instructions](Lab_11_Keyboard_or_Mouse_Controlled_Chasing_LEDs/images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
 
-## Video Demo
-
-
-

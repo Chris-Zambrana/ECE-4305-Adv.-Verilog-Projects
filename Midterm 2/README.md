@@ -10,9 +10,6 @@ The Psuedocode below goes through all steps in order to achieve the final coordi
 ![Psuedocode_1](Midterm%202/images/Psuedocode_1.png)
 ![Psuedocode_2](Midterm%202/images/Psuedocode_2.png)
 
-## Video Demo
-
-
 ## References 
 Below is all the references used to complete the project, including data sheets and schematics of the PCB
 

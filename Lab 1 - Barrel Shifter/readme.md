@@ -20,6 +20,3 @@ The following table shows the number of logic cells (Slice LUTs) used in the mux
 |----------|--------------------------|
 | Mux      | 24                       |
 | Reverser | 24                       |
-
-## Demo Video
-

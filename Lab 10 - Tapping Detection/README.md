@@ -18,7 +18,3 @@ Thus, the magnitude levels within the graph is represented as the following.
 **Magnitude Levels = | Calculated Magnitude - 1g |**
 
 This allows the magnitude to represented as levels where the higher it is then that means the tapping intensity is strong and this allows us to map magnitude to LEDs
-
-## Video Demo
-
-

@@ -178,12 +178,12 @@ Register Map:
 
 Standard RS232:
 - `'R' = 0x52`
-- `2 = 0x32`
+- `'2' = 0x32`
 - `<CR> = 0x0D`
 
 LV-MaxSonar (inverted):
 - `'R' = ~0x52 = 0xAD`
-- `2 = ~0x32 = 0xCD`
+- `'2' = ~0x32 = 0xCD`
 - `<CR> = ~0x0D = 0xF2`
 
 #### 5.3 Custom Servo PWM Core

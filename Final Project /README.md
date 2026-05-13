@@ -154,6 +154,9 @@ Function:
   - red object-detection beam
 - Controlled by memory-mapped registers in video slot V7 (origin, angle, distance, mode, color, thickness, fade config, bypass)
 
+Register Map:
+- [Radar Video Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
+
 #### 5.2 Custom Sensor UART Core
 **Files:**
 - `.../sources_1/imports/new/chu_uart_sensor.sv`
@@ -165,6 +168,9 @@ Function:
 - Maintains UART-like register model (baud, RX/TX data/status, remove-read)
 - Includes project-specific RX behavior in `uart_rx_sensor` to handle inverse RS232
 
+Register Map:
+- [Sensor UART Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
+
 #### 5.3 Custom Servo PWM Core
 **File:**
 - `.../sources_1/imports/new/chu_io_pwm_servo.sv`
@@ -175,6 +181,14 @@ Function:
   - `W=1` output channel
   - `R=21` resolution bits
 - Supports stable duty-cycle control appropriate for servo pulse timing
+
+Register Map:
+- [Servo PWM Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
+
+#### Note
+For more information regarding the specifications of the subsystems, cores, and SoC system in general, refer to my notebook with notes on the system:
+
+https://livecsupomona-my.sharepoint.com/:o:/r/personal/czambrana_cpp_edu/Documents/Notebooks/ECE4305%20Advanced%20Verilog%20Notes?d=w7deaf97db06445ac8aac9f42d94dc5be&csf=1&web=1&e=hlKGyK
 
 ---
 

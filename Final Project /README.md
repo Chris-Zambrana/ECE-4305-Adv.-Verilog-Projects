@@ -1,4 +1,6 @@
-# Final Project SoC Breakdown
+# Sonar Object Detection System
+
+## Final Project SoC Breakdown
 
 This document provides a full breakdown of the SoC system used in this final project, including:
 - HDL subsystems
@@ -9,7 +11,7 @@ This document provides a full breakdown of the SoC system used in this final pro
 
 ---
 
-## 1) SoC Architecture (Top-Level System)
+### 1) SoC Architecture (Top-Level System)
 
 **Top module:**  
 `/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/HDL/rtl/sources_1/imports/HDL/mcs_top_complete.sv`
@@ -34,9 +36,9 @@ Major board I/O tied into the SoC:
 
 ---
 
-## 2) Custom Bus / Addressing Model
+### 2) Custom Bus / Addressing Model
 
-### 2.1 MCS Bridge Layer
+#### 2.1 MCS Bridge Layer
 **File:**  
 `/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/HDL/rtl/sources_1/imports/HDL/chu_mcs_bridge.sv`
 
@@ -46,7 +48,7 @@ Major board I/O tied into the SoC:
   - `1` -> Video subsystem
 - Read/write strobes and data are translated directly to FPGA-side signals.
 
-### 2.2 MMIO Slot Bus
+#### 2.2 MMIO Slot Bus
 **Files:**  
 - `.../chu_mmio_controller.sv`  
 - `.../mmio_sys_sampler.sv`
@@ -63,7 +65,7 @@ Controller behavior:
 C++ helper mapping:
 - `get_slot_addr(base,slot) = base + slot*32*4`
 
-### 2.3 Video Bus
+#### 2.3 Video Bus
 **Files:**  
 - `.../chu_video_controller.sv`  
 - `.../video_sys_daisy.sv`
@@ -81,9 +83,9 @@ C++ helpers:
 
 ---
 
-## 3) HDL Subsystems and Core Slot Mapping
+### 3) HDL Subsystems and Core Slot Mapping
 
-### 3.1 MMIO Subsystem Slots (`mmio_sys_sampler.sv`)
+#### 3.1 MMIO Subsystem Slots (`mmio_sys_sampler.sv`)
 
 - **S0**  -> `chu_timer` (system timer)
 - **S1**  -> `chu_uart` (console UART)
@@ -102,7 +104,7 @@ C++ helpers:
 - **S14** -> `chu_uart_sensor` (**custom ultrasonic sensor UART path**)
 - **S15** -> `chu_io_pwm_servo` (**custom servo PWM core**)
 
-### 3.2 Video Subsystem Pipeline (`video_sys_daisy.sv`)
+#### 3.2 Video Subsystem Pipeline (`video_sys_daisy.sv`)
 
 Pixel stream chain:
 
@@ -120,7 +122,7 @@ Video slots:
 
 ---
 
-## 4) Driver Layer (C++)
+### 4) Driver Layer (C++)
 
 Driver directory:  
 `/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/c++/Drivers`
@@ -138,7 +140,7 @@ These drivers map software operations directly onto the MMIO and video register 
 
 ---
 
-## 5) Custom HDL Cores Added for This Project
+### 5) Custom HDL Cores Added for This Project
 
 ### 5.1 Custom Radar Video Core
 **Files:**
@@ -156,7 +158,7 @@ Function:
   - red object-detection beam
 - Controlled by memory-mapped registers in video slot V7 (origin, angle, distance, mode, color, thickness, fade config, bypass)
 
-### 5.2 Custom Sensor UART Core
+#### 5.2 Custom Sensor UART Core
 **Files:**
 - `.../sources_1/imports/new/chu_uart_sensor.sv`
 - `.../sources_1/new/uart_sensor.sv`
@@ -167,7 +169,7 @@ Function:
 - Maintains UART-like register model (baud, RX/TX data/status, remove-read)
 - Includes project-specific RX behavior in `uart_rx_sensor`
 
-### 5.3 Custom Servo PWM Core
+#### 5.3 Custom Servo PWM Core
 **File:**
 - `.../sources_1/imports/new/chu_io_pwm_servo.sv`
 
@@ -180,21 +182,21 @@ Function:
 
 ---
 
-## 6) Custom Drivers and Software Extensions Added for This Project
+### 6) Custom Drivers and Software Extensions Added for This Project
 
-### 6.1 `SensorUartCore` (`sensor_uart_core.h/.cpp`)
+#### 6.1 `SensorUartCore` (`sensor_uart_core.h/.cpp`)
 - Dedicated driver for slot S14.
 - Parses ultrasonic packet format:
   - `'R' + 3 ASCII digits + CR`
 - Includes packet resynchronization logic for corrupted/misaligned bytes.
 - Returns distance value in inches.
 
-### 6.2 `ServoPwmCore` (`servo_pwm_core.h/.cpp`)
+#### 6.2 `ServoPwmCore` (`servo_pwm_core.h/.cpp`)
 - Dedicated driver for slot S15 servo PWM.
 - Sets servo PWM frequency (50 Hz used by application).
 - Supports duty control by integer value and normalized floating-point value.
 
-### 6.3 `RadarCore` extension (`vga_core.h/.cpp`)
+#### 6.3 `RadarCore` extension (`vga_core.h/.cpp`)
 - Added as a custom video driver class for V7 radar overlay.
 - Exposes APIs for:
   - `set_origin()`
@@ -207,19 +209,19 @@ Function:
   - `update_scan()`
   - object-detection flag control
 
-### 6.4 `FrameCore` extension (`vga_core.h/.cpp`)
+#### 6.4 `FrameCore` extension (`vga_core.h/.cpp`)
 - Added helper drawing functions used by radar background rendering:
   - `plot_half_circle()`
   - `fill_half_circle()`
 
 ---
 
-## 7) Application Process (Main Program)
+### 7) Application Process (Main Program)
 
 Main application file:  
 `/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/c++/Main_App/main_video_test.cpp`
 
-### 7.1 Runtime Initialization
+#### 7.1 Runtime Initialization
 - Instantiates MMIO and video drivers mapped to the slot table.
 - Enables/disables bypass on video modules (frame/radar/osd active initially).
 - Configures radar overlay defaults:
@@ -230,7 +232,7 @@ Main application file:
 - Initializes servo PWM at 50 Hz.
 - Initializes PS/2 interface for keyboard input.
 
-### 7.2 Core Loop Sequence
+#### 7.2 Core Loop Sequence
 In each loop iteration:
 1. `keyboard_check(...)`
    - Reads keyboard commands over PS/2
@@ -248,7 +250,7 @@ In each loop iteration:
    - Pushes angle+distance to radar overlay via `RadarCore::update_scan(...)`
 4. Short timing delay (`sleep_ms(15)`)
 
-### 7.3 User Interaction Model
+#### 7.3 User Interaction Model
 Keyboard controls include:
 - `M/m` -> select operation mode
 - `S/s` -> set sweep speed (non-manual modes)
@@ -257,7 +259,7 @@ Keyboard controls include:
 
 ---
 
-## 8) End-to-End Integration Summary
+### 8) End-to-End Integration Summary
 
 This final project is a complete embedded SoC pipeline where:
 - MicroBlaze software controls MMIO and video cores via a custom bridge and slot-based bus

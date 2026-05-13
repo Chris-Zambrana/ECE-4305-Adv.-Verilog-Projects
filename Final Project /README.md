@@ -2,11 +2,15 @@
 
 ## Overview
 
-This final project is a complete embedded SoC pipeline implemented on a Nexys A7-100T FPGA board where:
+This final project is a Sonar Object Detection system implemented on a custom embedded SoC pipeline on the Nexys A7-100T FPGA board where:
 - MicroBlaze software controls MMIO and video cores via a custom bridge and slot-based bus
 - custom HDL modules implement radar overlay, sensor UART intake, and servo PWM actuation
-- custom C++ drivers expose those cores cleanly to software
+- custom C++ drivers expose the registers to those cores cleanly to software
 - the main application fuses keyboard input, compass/I2C, ultrasonic UART distance, servo sweep, and VGA rendering into one real-time radar-style interface
+
+## Video Demo
+https://youtu.be/jW2u8r9myFY
+
 
 ## SoC Breakdown
 

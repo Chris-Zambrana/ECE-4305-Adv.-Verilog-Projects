@@ -185,7 +185,7 @@ Function:
 Register Map:
 - [Servo PWM Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
 
-##### Note
+##### PWM Resolution Note
 - PWM period is standardized to 20 ms (50 Hz).
 - We need to determine PWM resolution (`R`):
 

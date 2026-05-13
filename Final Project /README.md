@@ -138,7 +138,7 @@ These drivers map software operations directly onto the MMIO and video register 
 
 ### 5) Custom HDL Cores Added for This Project
 
-### 5.1 Custom Radar Video Core
+#### 5.1 Custom Radar Video Core
 **Files:**
 - `.../sources_1/new/chu_vga_radar_core.sv`
 - `.../sources_1/new/radar_overlay_engine.sv`

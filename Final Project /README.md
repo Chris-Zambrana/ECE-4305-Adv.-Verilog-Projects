@@ -159,6 +159,7 @@ Function:
 - Controlled by memory-mapped registers in video slot V7 (origin, angle, distance, mode, color, thickness, fade config, bypass)
 
 Register Map:
+
 [Radar Video Core Register Map](images/radar_video_core_reg_map.png)
 
 #### 5.2 Custom Sensor UART Core
@@ -173,6 +174,7 @@ Function:
 - Includes project-specific RX behavior in `uart_rx_sensor` to handle inverse RS232
 
 Register Map:
+
 [Sensor UART Core Register Map](images/sensor_uart_core_reg_map.png)
 
 ##### UART Polarity Note
@@ -202,6 +204,7 @@ Function:
 - Supports stable duty-cycle control appropriate for servo pulse timing
 
 Register Map:
+
 [Servo PWM Core Register Map](images/servo_pwm_core_reg_map.png)
 
 ##### PWM Resolution Note

@@ -1,10 +1,19 @@
 # Sonar Object Detection System
 
-## Final Project SoC Breakdown
+## Overview
+
+This final project is a complete embedded SoC pipeline implemented on a Nexys A7-100T FPGA board where:
+- MicroBlaze software controls MMIO and video cores via a custom bridge and slot-based bus
+- custom HDL modules implement radar overlay, sensor UART intake, and servo PWM actuation
+- custom C++ drivers expose those cores cleanly to software
+- the main application fuses keyboard input, compass/I2C, ultrasonic UART distance, servo sweep, and VGA rendering into one real-time radar-style interface
+
+## SoC Breakdown
 
 This document provides a full breakdown of the SoC system used in this final project, including:
 - HDL subsystems
 - Custom bus/addressing structure
+- Subsystem Components and Cores
 - Core drivers
 - Custom HDL cores added for this project
 - Custom C++ drivers and the full application flow
@@ -12,9 +21,6 @@ This document provides a full breakdown of the SoC system used in this final pro
 ---
 
 ### 1) SoC Architecture (Top-Level System)
-
-**Top module:**  
-`/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/HDL/rtl/sources_1/imports/HDL/mcs_top_complete.sv`
 
 The top-level integrates:
 - **MicroBlaze MCS** soft processor (`cpu.xci`) running at 100 MHz
@@ -33,14 +39,13 @@ Major board I/O tied into the SoC:
 - XADC analog channels
 - PWM outputs (RGB LEDs + servo)
 - audio output path (DDFS + ADSR/PDM)
+- Seven Segment Display
 
 ---
 
 ### 2) Custom Bus / Addressing Model
 
 #### 2.1 MCS Bridge Layer
-**File:**  
-`/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/HDL/rtl/sources_1/imports/HDL/chu_mcs_bridge.sv`
 
 - Bridge base address: `0xC0000000` (`BRIDGE_BASE`)
 - `io_address[23]` selects target domain:
@@ -49,9 +54,6 @@ Major board I/O tied into the SoC:
 - Read/write strobes and data are translated directly to FPGA-side signals.
 
 #### 2.2 MMIO Slot Bus
-**Files:**  
-- `.../chu_mmio_controller.sv`  
-- `.../mmio_sys_sampler.sv`
 
 MMIO addressing:
 - `mmio_addr[10:5]` = slot number (64 slots max)
@@ -66,9 +68,6 @@ C++ helper mapping:
 - `get_slot_addr(base,slot) = base + slot*32*4`
 
 #### 2.3 Video Bus
-**Files:**  
-- `.../chu_video_controller.sv`  
-- `.../video_sys_daisy.sv`
 
 Video addressing:
 - `video_addr[20]` selects memory region:
@@ -112,9 +111,9 @@ Pixel stream chain:
 
 Video slots:
 - **V0** VGA sync/output core
-- **V1** mouse sprite core
+- **V1** mouse sprite core (Unused)
 - **V2** OSD core
-- **V3** ghost sprite core
+- **V3** ghost sprite core (Unused)
 - **V4** dummy (user placeholder)
 - **V5** dummy (user placeholder)
 - **V6** RGB-to-gray core
@@ -123,9 +122,6 @@ Video slots:
 ---
 
 ### 4) Driver Layer (C++)
-
-Driver directory:  
-`/home/runner/work/ECE-4305-Adv.-Verilog-Projects/ECE-4305-Adv.-Verilog-Projects/Final Project /code/c++/Drivers`
 
 Core driver classes include:
 - `TimerCore`, `UartCore`
@@ -167,7 +163,7 @@ Function:
 Function:
 - Dedicated UART core path for ultrasonic sensor input in MMIO slot S14
 - Maintains UART-like register model (baud, RX/TX data/status, remove-read)
-- Includes project-specific RX behavior in `uart_rx_sensor`
+- Includes project-specific RX behavior in `uart_rx_sensor` to handle inverse RS232
 
 #### 5.3 Custom Servo PWM Core
 **File:**
@@ -259,14 +255,19 @@ Keyboard controls include:
 
 ---
 
-### 8) End-to-End Integration Summary
+## References
 
-This final project is a complete embedded SoC pipeline where:
-- MicroBlaze software controls MMIO and video cores via a custom bridge and slot-based bus
-- custom HDL modules implement radar overlay, sensor UART intake, and servo PWM actuation
-- custom C++ drivers expose those cores cleanly to software
-- the main application fuses keyboard input, compass/I2C, ultrasonic UART distance, servo sweep, and VGA rendering into one real-time radar-style interface
+Nexys A7-100T Reference Manual:
+https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual?redirect=1&__cf_chl_tk=3olcm7D2jZhVYePhm8Eoqw8_Waufl0ESAK.RQkqlD1s-1777770536-1.0.1.1-zqbEIc2h6hBOkQ8BjLl6Ye0USDcfKN67HLgPPyNxlCY
 
-All three layers (bus + HDL + application) are tightly integrated and consistent through shared slot/register mapping in:
-- `chu_io_map.svh` (HDL side)
-- `chu_io_map.h` (C++ side)
+Maxsonar Ultrasonic Senesor Datasheet:
+https://maxbotix.com/pages/lv-maxsonar-ez-datasheet
+
+3-axis Compass Pmod Reference Manual
+https://digilent.com/reference/pmod/pmodcmps2/reference-manual?srsltid=AfmBOoqXetBwuNnBnsHk4Tevmn4Yf_rbjkUW1X1OsUz7Hqp8ADtMFAe5
+
+3-axis Compass Mangometer Datasheet
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1793/MMC3416xPJ.pdf
+
+180 Degree Positional Servo 
+https://www.amazon.de/-/en/Miuzei-Walking-Helicopter-Vehicle-Control/dp/B0G3WWTXLV?th=1

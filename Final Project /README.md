@@ -197,7 +197,7 @@ Register Map:
 
 `2^R = 2M`
 
-`log2(2^R) = log2(2M) -> R ~= 21`
+`log2(2^R) = log2(2M) -> R ≈ 21 (rounded to 21)`
 
 #### Note
 For more information regarding the specifications of the subsystems, cores, and SoC system in general, refer to my notebook with notes on the system:

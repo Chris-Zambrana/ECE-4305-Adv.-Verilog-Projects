@@ -171,7 +171,7 @@ Function:
 Register Map:
 - [Sensor UART Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
 
-##### Note (LV-MaxSonar UART Polarity)
+##### UART Polarity Note
 - The sensor outputs the **inverse** of standard RS232 (UART) polarity.
 - In other words, instead of normal UART assumptions (`idle = 1`, `start_bit = 0`, and data as listed directly in the datasheet), the ultrasonic output is the opposite polarity (`idle = 0`, `start_bit = 1`, and inverted data bits).
 - Example: if the sensor sends `R222<CR>` in ASCII, each byte appears inverted on the wire.

@@ -202,7 +202,7 @@ Function:
 - Supports stable duty-cycle control appropriate for servo pulse timing
 
 Register Map:
-- [Servo PWM Core Register Map](images/servo_pwmn_core_reg_map.png)
+- [Servo PWM Core Register Map](images/servo_pwm_core_reg_map.png)
 
 ##### PWM Resolution Note
 - PWM period is standardized to 20 ms (50 Hz).

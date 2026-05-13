@@ -159,7 +159,7 @@ Function:
 - Controlled by memory-mapped registers in video slot V7 (origin, angle, distance, mode, color, thickness, fade config, bypass)
 
 Register Map:
-- [Radar Video Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
+- [Radar Video Core Register Map](images/radar_video_core_reg_map.png)
 
 #### 5.2 Custom Sensor UART Core
 **Files:**
@@ -173,7 +173,7 @@ Function:
 - Includes project-specific RX behavior in `uart_rx_sensor` to handle inverse RS232
 
 Register Map:
-- [Sensor UART Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
+- [Sensor UART Core Register Map](images/sensor_uart_core_reg_map.png)
 
 ##### UART Polarity Note
 - The sensor outputs the **inverse** of standard RS232 (UART) polarity.
@@ -202,7 +202,7 @@ Function:
 - Supports stable duty-cycle control appropriate for servo pulse timing
 
 Register Map:
-- [Servo PWM Core Register Map](images/Lab%2011%20-%20Keyboard%20or%20mouse%20controlled%20chasing%20LED.pdf)
+- [Servo PWM Core Register Map](images/servo_pwmn_core_reg_map.png)
 
 ##### PWM Resolution Note
 - PWM period is standardized to 20 ms (50 Hz).

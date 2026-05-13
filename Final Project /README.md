@@ -212,9 +212,9 @@ Register Map:
 
 `2^R = 2,000,000`
 
-`log2(2^R) = log2(2,000,000) ≈ 20.93 -> choose R = 21`
+`log2(2^R) = log2(2,000,000) ≈ 20.93 -> R = 21`
 
-#### Note
+### Note
 For more information regarding the specifications of the subsystems, cores, and SoC system in general, refer to my notebook with notes on the system:
 
 https://livecsupomona-my.sharepoint.com/:o:/r/personal/czambrana_cpp_edu/Documents/Notebooks/ECE4305%20Advanced%20Verilog%20Notes?d=w7deaf97db06445ac8aac9f42d94dc5be&csf=1&web=1&e=hlKGyK

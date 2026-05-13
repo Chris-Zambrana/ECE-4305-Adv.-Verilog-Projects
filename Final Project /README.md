@@ -44,7 +44,7 @@ Major board I/O tied into the SoC:
 - `io_address[23]` selects target domain:
   - `0` -> MMIO subsystem
   - `1` -> Video subsystem
-- Read/write strobes and data are translated directly to FPro-side signals.
+- Read/write strobes and data are translated directly to FPGA-side signals.
 
 ### 2.2 MMIO Slot Bus
 **Files:**  
@@ -221,7 +221,7 @@ Main application file:
 
 ### 7.1 Runtime Initialization
 - Instantiates MMIO and video drivers mapped to the slot table.
-- Enables/disable bypass on video modules (frame/radar/osd active initially).
+- Enables/disables bypass on video modules (frame/radar/osd active initially).
 - Configures radar overlay defaults:
   - center/origin
   - color
